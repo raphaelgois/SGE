@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui">
+    <ui:composition template="/resources/template/main.xhtml">
+        <ui:define name="nav_bar">
+            <ui:include src="/admin/top_bar_admin.xhtml" />
+        </ui:define>
+
+        <ui:define name="container">
+
+            <h:form>
+                <p:growl id="msg0"/>
+                <p:dataTable id="idTabela" var="pessoa" value="#{mbPessoa.pessoas}"
+                             paginator="true" rows="10" emptyMessage="Nenhum registro encontrado"
+                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink}
+                             {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                             rowsPerPageTemplate="5,10,15">
+
+                    <f:facet name="header">Lista de Pessoas</f:facet>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Nome"/>
+                        </f:facet>
+                        <h:outputText value="#{mbPessoa.pessoa.nome}"/>
+                        
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Sobrenome"/>
+                        </f:facet>
+                        <h:outputText value="#{mbPessoa.pessoa.sobrenome}"/>
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Email"/>
+                        </f:facet>
+                        <h:outputText value="#{mbPessoa.pessoa.email}"/>
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Sexo"/>
+                        </f:facet>
+                        <h:outputText value="#{mbPessoa.pessoa.sexo}"/>
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Ações"/>
+                        </f:facet>
+                        <p:commandButton action="#{mbPessoa.editPessoa}"
+                                         value="Editar" image="ui-icon ui-icon-pencil"
+                                         update="@form" ajax="false">
+                            <f:setPropertyActionListener value="#{pessoa}" target="#{mbPessoa.pessoa}"/>
+                            <f:setPropertyActionListener value="#{pessoa.idPessoa}" target="#{mbPessoa.pessoa.idPessoa}"/>
+
+                        </p:commandButton>
+
+                        <p:commandButton value="Cancelar" action="#{mbPessoa.limpPessoa}"
+                                         image="ui-icon ui-icon-close" update="@form"/>
+
+                    </p:column>
+
+                </p:dataTable>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

@@ -18,6 +18,30 @@ import org.hibernate.annotations.ForeignKey;
 @Table (name="pessoa")
 public class Pessoa implements Serializable{
     private static final long SerialVersionUID = 1L;
+    
+    @Id
+    @GeneratedValue
+    @Column(name="IdPessoa", nullable = false)
+    private Integer idPessoa;
+    @Column (name ="Nome",nullable = false, length = 80)
+    private String nome;
+    @Column (name ="Sobrenome",nullable = false, length = 200)
+    private String sobrenome;
+    @Column (name ="Email",nullable = false, length = 80)
+    private String email;
+    @Column (name ="Sexo",nullable = false, length = 20)
+    private String sexo;
+    @Column (name ="Data",nullable = false)
+    @Temporal (javax.persistence.TemporalType.DATE)
+    private Date dataNascimento;
+    @Column (name ="Tipo",nullable = false, length = 20)
+    private String tipo;
+    @Column(name = "Login", unique=true, length = 25)
+    private String login;
+    @Column(name = "Senha", length = 40)
+    private String senha;
+    @Column(name = "Permissao", length = 36)
+    private String permissao;
 
     @Override
     public int hashCode() {
@@ -44,24 +68,30 @@ public class Pessoa implements Serializable{
     public Pessoa() {
     }
     
-    @Id
-    @GeneratedValue
-    @Column(name="IdPessoa", nullable = false)
-    private Integer idPessoa;
-    @Column (name ="Nome",nullable = false, length = 80)
-    private String nome;
-    @Column (name ="Sobrenome",nullable = false, length = 200)
-    private String sobrenome;
-    @Column (name ="Email",nullable = false, length = 80)
-    private String email;
-    @Column (name ="Sexo",nullable = false, length = 20)
-    private String sexo;
-    @Column (name ="Data",nullable = false)
-    @Temporal (javax.persistence.TemporalType.DATE)
-    private Date dataNascimento;
-    @Column (name ="Tipo",nullable = false, length = 20)
-    private String tipo;
+    
+    public String getLogin() {
+        return login;
+    }
 
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public String getPermissao() {
+        return permissao;
+    }
+
+    public void setPermissao(String permissao) {
+        this.permissao = permissao;
+    }
     public String getTipo() {
         return tipo;
     }

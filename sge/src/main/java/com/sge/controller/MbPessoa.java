@@ -1,5 +1,6 @@
 package com.sge.controller;
 
+import com.sge.conversores.ConverterSHA1;
 import com.sge.model.dao.HibernateDAO;
 import com.sge.model.dao.InterfaceDAO;
 import com.sge.model.entities.Pessoa;
@@ -15,6 +16,15 @@ import javax.faces.context.FacesContext;
 @SessionScoped
 public class MbPessoa implements Serializable{
     private static final long serialVersionUID = 1L;
+    private String confereSenha;
+
+    public String getConfereSenha() {
+        return confereSenha;
+    }
+
+    public void setConfereSenha(String confereSenha) {
+        this.confereSenha = confereSenha;
+    }
     private Pessoa pessoa = new Pessoa();
     private List<Pessoa> pessoas;
 
@@ -29,7 +39,7 @@ public class MbPessoa implements Serializable{
         return "/admin/cadastrarpessoa.xhtml";
     }
     public String editPessoa(){
-        return "/admin/cadastrarpessoa.xhtml";
+        return "/cadastrarUsuario.xhtml";
     }
     public String addPessoa(){
         if (pessoa.getIdPessoa()== null || pessoa.getIdPessoa()==0){
@@ -59,9 +69,20 @@ public class MbPessoa implements Serializable{
     }
 
     private void insertPessoa() {
-        pessoaDAO().save(pessoa);
-        FacesContext.getCurrentInstance().addMessage(null,
-                new FacesMessage(FacesMessage.SEVERITY_INFO, "Gravação efetuada com sucesso", ""));
+        pessoa.setSenha(ConverterSHA1.cipher(pessoa.getSenha()));
+        if (pessoa.getSenha() == null ? confereSenha == null : pessoa.getSenha().equals(ConverterSHA1.cipher(confereSenha))) {
+            if (pessoa.getTipo().equals("gestor")){
+                pessoa.setPermissao("ROLE_ADMIN");
+            } else {
+                pessoa.setPermissao("ROLE_USER");
+            }
+            pessoaDAO().save(pessoa);
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_INFO, "Gravação efetuada com sucesso", ""));
+        } else {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_INFO, "As senhas não conferem.", ""));
+        }
     }
 
     private void updatePessoa() {
