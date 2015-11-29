@@ -7,16 +7,19 @@
                             http://www.springframework.org/schema/security
                             http://www.springframework.org/schema/security/spring-security.xsd">
 
-        <http auto-config="true" use-expressions="true">
-        <intercept-url pattern="/login.faces" access="permitAll" />
-        <intercept-url pattern="/restrict/**" access="isAuthenticated()" />
-        <intercept-url pattern="/public/**" access="permitAll"/>
+        <http>
         
-        <form-login login-page="/login.faces" authentication-failure-url="/login.faces?erro=true"
-                    default-target-url="/restrict/home.faces"/>		
+        <intercept-url pattern="/user/**" access="ROLE_USER"/>
+        <intercept-url pattern="/admin/**" access="ROLE_ADMIN"/>
+        
+        <form-login login-page="/login.jsf" authentication-failure-url="/login.faces?erro=true"
+                    default-target-url="/index.xhtml"
+                    authentication-success-handler-ref="authenticationSuccessHandler"/>
+        <logout logout-success-url="/login.jsf"/>
         <access-denied-handler error-page="/acessonegado.faces" />
     </http>                
-
+<b:bean id="authenticationSuccessHandler"
+        class="com.sge.util.UrlAuthenticationSuccessHandler"/>
     <!-- NO PROJETO SEMERU PADRÃO FIZEMOS DESSA FORMA -->  
     <authentication-manager>
         <authentication-provider>
@@ -28,10 +31,10 @@
     </authentication-manager>
     
     <b:bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource" >
-        <b:property name="url" value="jdbc:mysql://localhost:3306/semeru_jsf_maven_db" />
+        <b:property name="url" value="jdbc:mysql://localhost:3306/dbsge" />
         <b:property name="driverClassName" value="com.mysql.jdbc.Driver" />
         <b:property name="username" value="root" />
-        <b:property name="password" value="" />
+        <b:property name="password" value="root" />
     </b:bean>
     
     <!-- MAS EXISTEM OUTRAS 2 FORMAS DE SE FAZER ISSO -->
