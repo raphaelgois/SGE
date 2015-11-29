@@ -8,6 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -58,10 +59,17 @@ public class Pessoa implements Serializable{
     @Column (name ="Data",nullable = false)
     @Temporal (javax.persistence.TemporalType.DATE)
     private Date dataNascimento;
+    @Column (name ="Tipo",nullable = false, length = 20)
+    private String tipo;
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
     
-    @ManyToOne(optional = false)
-    @ForeignKey(name = "PessoaPermission")
-    private Pessoa pessoa;
     public void setIdPessoa(Integer idPessoa) {
         this.idPessoa = idPessoa;
     }
