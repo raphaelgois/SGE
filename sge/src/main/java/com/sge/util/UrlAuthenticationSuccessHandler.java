@@ -53,6 +53,7 @@ public class UrlAuthenticationSuccessHandler implements
         protected String determineTargetUrl(final Authentication authentication) {
             boolean isCommon = false;
             boolean isAdmin = false;
+            boolean isRH = false;
             final Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
             for (final GrantedAuthority grantedAuthority : authorities) {
                 if (grantedAuthority.getAuthority().equals("ROLE_USER")) {
@@ -61,13 +62,18 @@ public class UrlAuthenticationSuccessHandler implements
                 } else if (grantedAuthority.getAuthority().equals("ROLE_ADMIN")) {
                     isAdmin = true;
                     break;
+                } else {
+                    isRH= true;
                 }
             }
             if (isCommon) {
                 return "/user/index.jsf";
             } else if (isAdmin) {
                 return "/admin/index.jsf";
-            } else {
+            } else if (isRH){
+                return "/rh/index.jsf";
+            }
+            else {
                 throw new IllegalStateException();
             }
         }

@@ -129,15 +129,36 @@
             <url>http://repo1.maven.org/maven2/</url>
         </repository>  
 
-    </repositories>
+        <repository>
+            <id>com.daypilot</id>
+            <url>/home/raphael/Downloads/</url>
+        </repository>
 
+    </repositories>
     <dependencies>
         <dependency>
             <groupId>commons-fileupload</groupId>
             <artifactId>commons-fileupload</artifactId>
             <version>1.2</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.hsqldb</groupId>
+            <artifactId>hsqldb</artifactId>
+            <version>2.3.3</version>
+        </dependency>
+        <dependency>
+            <groupId>com.dhtmlx</groupId>
+            <artifactId>javaplanner</artifactId>
+            <version>1.5</version>
+            <scope>system</scope>
+            <systemPath>/home/raphael/Downloads/javaplanner-v1.5/javaplanner-1.5.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>3.0.3.RELEASE</version>
+            <type>jar</type>
+        </dependency>
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
@@ -192,7 +213,7 @@
         <!-- ######## TEMAS DO PRIMEFACES ######### -->        
         <dependency>              
             <groupId>org.primefaces.themes</groupId>  
-            <artifactId>cupertino</artifactId>              
+            <artifactId>bootstrap</artifactId>              
             <version>${themes.version}</version> 
         </dependency> 
         

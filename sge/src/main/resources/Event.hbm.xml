@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping> 
+        <class name="com.sge.util.DHXEvent" table="events">
+                <id column="event_id" name="id" type="java.lang.Integer">
+                        <generator class="increment"/>
+                </id>
+                <property column="start_date" name="start_date" type="timestamp"/>
+                <property column="end_date" name="end_date" type="timestamp"/>
+                <property column="event_name" name="text" type="java.lang.String"/>
+        </class>
+</hibernate-mapping>

@@ -1,0 +1,43 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <title>Calendário</title>
+        <h:outputScript library="calendario/codebase" name="dhtmlxscheduler.js"/>
+        <h:outputScript library="calendario/codebase" name="dhtmlxscheduler_timeline.js"/>
+        <h:outputStylesheet library="calendario/codebase" name="dhtmlxscheduler.css" />
+
+    </h:head>
+    <h:body>
+        <script type = "text/javascript" charset = "utf-8" >
+            function init() {
+                scheduler.init('guide', new Date(), "week");
+            }
+        </script>
+        <ui:composition template="/resources/template/main.xhtml">
+            <ui:define name="nav_bar">
+                <ui:include src="/admin/top_bar_admin.xhtml" />
+                <div class="row" style="padding-top: 60px;">
+                    <h:outputText value="Oi #{BbUsuarioLogado.procuraPessoa().getNome()}"/>
+                    <a style="padding-right: 3px;" href="#{request.contextPath}/j_spring_security_logout">sair</a>
+                    <br></br>
+                    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+                    <!-- Modal -->
+                    <div id="myModal" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    <iframe src="calendario.xhtml"  width="1000" height="550" frameborder="0"></iframe>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

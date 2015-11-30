@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+    </h:head>
+    <body>
+            <h:form>
+                <h:dataTable id="myTable" class="table table-striped table-bordered" var="pessoa" value="#{mbPessoa.pessoas}">
+
+                    <f:facet name="header" >Lista de Pessoas</f:facet>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Nome"/>
+                        </f:facet>
+                        <h:outputText value="#{pessoa.nome} #{pessoa.sobrenome}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Login"/>
+                        </f:facet>
+                        <h:outputText value="#{pessoa.login}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Sexo"/>
+                        </f:facet>
+                        <h:outputText value="#{pessoa.sexo}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Tipo"/>
+                        </f:facet>
+                        <h:outputText value="#{pessoa.tipo}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Ações"/>
+                        </f:facet>
+                        <h:commandLink  action="#{mbPessoa.editPessoa}">
+                            <i class="glyphicon glyphicon-edit"/>
+                            <f:setPropertyActionListener value="#{pessoa}" target="#{mbPessoa.pessoa}"/>
+                            <f:setPropertyActionListener value="#{pessoa.idPessoa}" target="#{mbPessoa.pessoa.idPessoa}"/>
+                        </h:commandLink>>
+
+                        <h:commandButton onclick="if (!confirm('Really want to do that?'))
+                                    return false" 
+                                         value="Deletar" action="#{mbPessoa.deletePessoa}">
+                            <f:setPropertyActionListener value="#{pessoa}" target="#{mbPessoa.pessoa}"/>
+                            <f:setPropertyActionListener value="#{pessoa.idPessoa}" target="#{mbPessoa.pessoa.idPessoa}"/>
+                        </h:commandButton>
+                    </h:column>
+                </h:dataTable>
+            </h:form>
+    </body>
+</html>

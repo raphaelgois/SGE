@@ -7,11 +7,10 @@
                             http://www.springframework.org/schema/security
                             http://www.springframework.org/schema/security/spring-security.xsd">
 
-        <http>
-        
+        <http>      
         <intercept-url pattern="/user/**" access="ROLE_USER"/>
         <intercept-url pattern="/admin/**" access="ROLE_ADMIN"/>
-        
+        <intercept-url pattern="/rh/**" access="ROLE_RH"/>
         <form-login login-page="/login.jsf" authentication-failure-url="/login.faces?erro=true"
                     default-target-url="/index.xhtml"
                     authentication-success-handler-ref="authenticationSuccessHandler"/>

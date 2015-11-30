@@ -1,0 +1,75 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <title>Calendário</title>
+        <h:outputScript library="scheduler/daypilot" name="daypilot-all.min.js"/>
+        <h:outputScript library="scheduler/daypilot" name="calendar.js"/>
+        <h:outputScript library="scheduler/daypilot" name="common.js"/>
+    </h:head>    
+    <body>
+        
+<div class="calendar_blue_wrap"><div class="calendar_blue_wrap_inner">
+<table style="width:100%">
+        <tr>
+            <td valign="top" style="width:150px">
+				<div id="dpn"></div>
+            </td>
+            <td valign="top" style="width:10px">
+            </td>
+            <td valign="top" style="height:480px">
+				<div id="dpc"></div>
+            </td>
+		</tr>
+</table>
+</div></div>          
+
+<script type="text/javascript">
+
+var dpn = new DayPilot.Navigator("dpn");
+dpn.bound = "dpc";
+dpn.selectMode = 'week';
+dpn.cssOnly = true;
+dpn.cssClassPrefix = "navigator_blue";
+dpn.weekStarts = 0;
+dpn.showWeekNumbers = true;
+dpn.showMonths = 3;
+dpn.skipMonths = 3;
+dpn.init();
+
+var dpc = new DayPilot.Calendar("dpc");
+dpc.backendUrl = '../dpc';
+dpc.ajaxError = function(req) { new DayPilot.Modal().showHtml(req.responseText); };
+dpc.cssOnly = true;
+dpc.cssClassPrefix = "calendar_blue";
+dpc.viewType = "Week";
+dpc.heightSpec = 'Parent100Pct';
+dpc.height = 200;
+dpc.shadow = 'Fill';
+dpc.timeRangeSelectedHandling = 'CallBack';
+dpc.eventMoveHandling = 'CallBack';
+dpc.eventResizeHandling = 'CallBack';
+dpc.eventDeleteHandling = 'CallBack';
+dpc.eventClickHandling = 'Edit';
+dpc.eventEditHandling = 'CallBack';
+dpc.eventArrangement = "Full";
+dpc.showAllDayEvents = true;
+dpc.bubble = new DayPilot.Bubble();
+dpc.showToolTip = false;
+dpc.initScrollPos = 9 * 40 + 1; 
+dpc.eventRightClickHandling = "ContextMenu";
+dpc.contextMenu = new DayPilot.Menu({
+
+
+	items: [
+		{text:"Show event ID", onclick: function() {alert("Event value: " + this.source.value());} },
+		{text:"Show event text", onclick: function() {alert("Event text: " + this.source.text());} },
+		{text:"Show event start", onclick: function() {alert("Event start: " + this.source.start().toStringSortable());} },
+		{text:"Go to google.com", href: "http://www.google.com/?q={0}"},
+		{text:"CallBack: Delete this event", command: "delete"} 
+	]});
+dpc.init();
+
+</script>
+    </body>
+</html>

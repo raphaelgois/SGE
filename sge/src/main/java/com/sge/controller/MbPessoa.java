@@ -17,7 +17,8 @@ import javax.faces.context.FacesContext;
 public class MbPessoa implements Serializable{
     private static final long serialVersionUID = 1L;
     private String confereSenha;
-
+    
+    
     public String getConfereSenha() {
         return confereSenha;
     }
@@ -36,11 +37,12 @@ public class MbPessoa implements Serializable{
         return pesssoaDAO;
     }
     public String limpaPessoa(){
-        return "/admin/cadastrarpessoa.xhtml";
+        return "/admin/usuariosCadastrados.xhtml";
     }
     public String editPessoa(){
-        return "/cadastrarUsuario.xhtml";
+        return "/admin/cadastrarUsuario.xhtml";
     }
+    
     public String addPessoa(){
         if (pessoa.getIdPessoa()== null || pessoa.getIdPessoa()==0){
             insertPessoa();
@@ -71,8 +73,10 @@ public class MbPessoa implements Serializable{
     private void insertPessoa() {
         pessoa.setSenha(ConverterSHA1.cipher(pessoa.getSenha()));
         if (pessoa.getSenha() == null ? confereSenha == null : pessoa.getSenha().equals(ConverterSHA1.cipher(confereSenha))) {
-            if (pessoa.getTipo().equals("gestor")){
+            if (pessoa.getTipo().equals("Gestor")){
                 pessoa.setPermissao("ROLE_ADMIN");
+            } else if (pessoa.getTipo().equals("RH")){
+                pessoa.setPermissao("ROLE_RH");
             } else {
                 pessoa.setPermissao("ROLE_USER");
             }

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <title>Calendário</title>
+        <h:outputScript library="calendario/codebase" name="dhtmlxscheduler.js"/>
+        <h:outputScript library="calendario/codebase" name="dhtmlxscheduler_timeline.js"/>
+        <h:outputStylesheet library="calendario/codebase" name="dhtmlxscheduler.css" />
+
+    </h:head>
+    <h:body onload="init();">
+
+        <script type = "text/javascript" charset = "utf-8" >
+            function init() {
+                scheduler.init('guide', new Date(), "week");
+            }
+        </script>
+        <div id="guide" class="dhx_cal_container" style="width:1200px; height:600px">
+            <div class="dhx_cal_navline">
+                <div class="dhx_cal_prev_button"></div>
+                <div class="dhx_cal_next_button"></div>
+                <div class="dhx_cal_today_button"></div>
+                <div class="dhx_cal_date"></div>
+                <div class="dhx_cal_tab" name="day_tab" style="right:150px;"></div>
+                <div class="dhx_cal_tab" name="week_tab" style="right:120px;"></div>
+                <div class="dhx_cal_tab" name="month_tab" style="right:56px;"></div>
+            </div>
+            <div class="dhx_cal_header">
+            </div>
+            <div class="dhx_cal_data">
+            </div>
+        </div>       
+    </h:body>
+</html>

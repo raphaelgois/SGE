@@ -78,16 +78,26 @@
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>*.xhtml</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <description /> 
+        <display-name>DpcServlet</display-name> 
+        <servlet-name>DpcServlet</servlet-name> 
+        <servlet-class>com.sge.calendar.DpcServlet</servlet-class> 
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DpcServlet</servlet-name> 
+        <url-pattern>/dpc</url-pattern> 
+    </servlet-mapping>
     <!-- Configurações do PrimeFaces -->
 
-        <!-- Filtros de Upload -->
+    <!-- Filtros de Upload -->
     
-        <!--    <filter>  
-            <filter-name>PrimeFaces FileUpload Filter</filter-name>  
-            <filter-class>org.primefaces.webapp.filter.FileUploadFilter</filter-class>  
-        </filter>  
-        <filter-mapping>  
-            <filter-name>PrimeFaces FileUpload Filter</filter-name>  
-            <servlet-name>Faces Servlet</servlet-name>  
-        </filter-mapping> -->
+    <!--    <filter>  
+        <filter-name>PrimeFaces FileUpload Filter</filter-name>  
+        <filter-class>org.primefaces.webapp.filter.FileUploadFilter</filter-class>  
+    </filter>  
+    <filter-mapping>  
+        <filter-name>PrimeFaces FileUpload Filter</filter-name>  
+        <servlet-name>Faces Servlet</servlet-name>  
+    </filter-mapping> -->
 </web-app>
