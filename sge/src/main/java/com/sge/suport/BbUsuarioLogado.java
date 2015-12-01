@@ -1,8 +1,5 @@
 package com.sge.suport;
 
-import com.dhtmlx.planner.DHXPlanner;
-import com.dhtmlx.planner.DHXSkin;
-import com.dhtmlx.planner.data.DHXDataFormat;
 import com.sge.model.entities.Pessoa;
 import com.sge.util.FacesContextUtil;
 import java.io.Serializable;
@@ -46,12 +43,5 @@ public class BbUsuarioLogado implements Serializable{
     public void logout(){
         
     }
-     String getPlanner(HttpServletRequest request) throws Exception{
-		DHXPlanner s = new DHXPlanner("../codebase/", DHXSkin.TERRACE);
-		s.setWidth(900);
-		s.setInitialDate(2015,0,21);
-		s.load("events.jsp", DHXDataFormat.JSON);
-		s.data.dataprocessor.setURL("events.jsp");
-		return s.render();
-}
+    
 }

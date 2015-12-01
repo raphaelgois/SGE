@@ -56,7 +56,14 @@
         <param-name>javax.faces.PROJECT_STAGE</param-name>
         <param-value>Development</param-value>
     </context-param>
-    
+    <servlet>
+        <servlet-name>DataServlet</servlet-name>
+        <servlet-class>com.sge.calendar.BasicConnector</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DataServlet</servlet-name>
+        <url-pattern>/scheduler/myconnector.do</url-pattern>
+    </servlet-mapping>
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
@@ -78,16 +85,7 @@
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>*.xhtml</url-pattern>
     </servlet-mapping>
-    <servlet>
-        <description /> 
-        <display-name>DpcServlet</display-name> 
-        <servlet-name>DpcServlet</servlet-name> 
-        <servlet-class>com.sge.calendar.DpcServlet</servlet-class> 
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>DpcServlet</servlet-name> 
-        <url-pattern>/dpc</url-pattern> 
-    </servlet-mapping>
+    
     <!-- Configurações do PrimeFaces -->
 
     <!-- Filtros de Upload -->

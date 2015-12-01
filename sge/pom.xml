@@ -22,6 +22,8 @@
         <netbeans.hint.deploy.server>Tomcat</netbeans.hint.deploy.server>   
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
     
     <repositories>
@@ -148,10 +150,10 @@
         </dependency>
         <dependency>
             <groupId>com.dhtmlx</groupId>
-            <artifactId>javaplanner</artifactId>
-            <version>1.5</version>
+            <artifactId>dhtmlxconnector</artifactId>
+            <version>1.0</version>
             <scope>system</scope>
-            <systemPath>/home/raphael/Downloads/javaplanner-v1.5/javaplanner-1.5.jar</systemPath>
+            <systemPath>/home/raphael/Downloads/dhtmlxConnector_java_v15_120612/codebase/connector.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
@@ -200,7 +202,8 @@
         <dependency>
             <groupId>javax.servlet.jsp</groupId>
             <artifactId>jsp-api</artifactId>
-            <version>2.1</version>
+            <version>2.2</version>
+            <scope>provided</scope>
         </dependency>
         
         <!-- ##### DEPENDÊNCIAS DO PRIMEFACES ##### -->

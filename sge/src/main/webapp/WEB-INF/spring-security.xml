@@ -19,7 +19,7 @@
     </http>                
 <b:bean id="authenticationSuccessHandler"
         class="com.sge.util.UrlAuthenticationSuccessHandler"/>
-    <!-- NO PROJETO SEMERU PADRÃO FIZEMOS DESSA FORMA -->  
+
     <authentication-manager>
         <authentication-provider>
             <password-encoder hash="sha"/>
@@ -35,21 +35,4 @@
         <b:property name="username" value="root" />
         <b:property name="password" value="root" />
     </b:bean>
-    
-    <!-- MAS EXISTEM OUTRAS 2 FORMAS DE SE FAZER ISSO -->
-    <!-- VOCÊ PODE CUSTOMIZAR A AUTENTICATION PROVIDER -->
-    <!--    <b:bean id="customAuthenticationProvider" class="br.com.semeru.security.CustomAuthenticationProvider"></b:bean> 
-    <authentication-manager> 
-        <authentication-provider ref="customAuthenticationProvider"/> 
-    </authentication-manager>     -->
-    
-    <!-- OU VOCÊ PODE AINDA CUSTOMIZAR A USER DETAILS -->
-<!--    <b:bean id="encoder" class="org.springframework.security.crypto.password.StandardPasswordEncoder"/>
-    <authentication-manager>
-        <authentication-provider user-service-ref="semeruUserService" >
-            <password-encoder hash="sha"/>
-        </authentication-provider>
-    </authentication-manager>
-
-    <b:bean id="semeruUserService" class="br.com.semeru.security.UserServiceImpl"/>-->
 </b:beans>    

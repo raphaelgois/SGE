@@ -5,7 +5,7 @@
     <h:head>
         <title>Calendário</title>
         <h:outputScript library="calendario/codebase" name="dhtmlxscheduler.js"/>
-        <h:outputScript library="calendario/codebase" name="dhtmlxscheduler_timeline.js"/>
+
         <h:outputStylesheet library="calendario/codebase" name="dhtmlxscheduler.css" />
 
     </h:head>
@@ -13,10 +13,20 @@
 
         <script type = "text/javascript" charset = "utf-8" >
             function init() {
-                scheduler.init('guide', new Date(), "week");
+                scheduler.config.xml_date = "%Y-%m-%d %H:%i";
+                
+                scheduler.config.first_hour = 4;
+                scheduler.locale.labels.section_location = "Location";
+                scheduler.config.details_on_create = true;
+                scheduler.config.details_on_dblclick = true;
+                scheduler.init('scheduler_here', null, "month");
+                
+                scheduler.load("myconnector.do?uid="+(new Date()).valueOf());
+                var dp = new dataProcessor("myconnector.do");
+                dp.init(scheduler);
             }
         </script>
-        <div id="guide" class="dhx_cal_container" style="width:1200px; height:600px">
+        <div id="scheduler_here" class="dhx_cal_container" style="width:1200px; height:600px">
             <div class="dhx_cal_navline">
                 <div class="dhx_cal_prev_button"></div>
                 <div class="dhx_cal_next_button"></div>
