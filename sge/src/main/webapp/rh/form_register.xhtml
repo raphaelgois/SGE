@@ -6,13 +6,16 @@
       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:p="http://primefaces.org/ui"
       xmlns:c="http://java.sun.com/jsp/jstl/core">
-
+    
     <body>
-        <div class="col-md-8">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+        
             <h3>Informe os dados do novo usuário do sistema.</h3>
-
+            </div>
             <br />
 
+    <div class="panel-body">
             <h:form class="form-horizontal" role="form">
                 <div class="form-group">
                     <h:outputLabel/>
@@ -156,6 +159,7 @@
                             <f:selectItem itemValue="Gestor" itemLabel="Gestor" />
                             <f:selectItem itemValue="RH" itemLabel="RH" />
                             <f:selectItem itemValue="Usuario" itemLabel="Usuário comum" />
+                            <f:selectItem itemValue="Terceiro" itemLabel="Terceirizado" />
                             <f:ajax event="blur" render="m_tipo" />
                         </h:selectOneMenu>
                         <div class="row" style="padding-left: 15px;">
@@ -172,10 +176,12 @@
                 <div class="form-group">
                     <div class="col-sm-offset-3 col-sm-10">
                         <h:commandButton action="#{mbPessoa.addPessoa}" value="Enviar"
-                                         styleClass="btn btn-default" />
+                                         styleClass="btn btn-info" />
                     </div>
                 </div>
             </h:form>
         </div>
+</div>
+            
     </body>
 </html>

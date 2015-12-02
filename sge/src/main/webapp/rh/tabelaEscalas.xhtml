@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+    </h:head>
+    <body>
+        <h:form>
+            <h:dataTable id="myTable" class="table table-striped table-bordered" var="escala" value="#{mbEscala.escalas}">
+
+                <f:facet name="header" >Lista de Escalas</f:facet>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Colaborador"/>
+                    </f:facet>
+                    <h:outputText value="#{escala.escala_name}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Início"/>
+                    </f:facet>
+                    <h:outputText value="#{escala.end_date}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Fim"/>
+                    </f:facet>
+                    <h:outputText value="#{escala.end_date}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Aprovação"/>
+                    </f:facet>
+                    <h:outputText value="#{escala.aprovacao}"/>
+                </h:column>
+                
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Ações"/>
+                    </f:facet>
+                    <h:commandButton onclick="if (!confirm('Really want to do that?'))
+                                                    return false" 
+                                                    value="Deletar" action="#{mbEscala.deleteEscala}">
+                        <f:setPropertyActionListener value="#{escala}" target="#{mbEscala.escala}"/>
+                        <f:setPropertyActionListener value="#{escala.escala_id}" target="#{mbEscala.escala.escala_id}"/>
+                    </h:commandButton>
+                    <h:commandButton value="Aprovar" action="#{mbEscala.aprovarEscala}">
+                        <f:setPropertyActionListener value="#{escala}" target="#{mbEscala.escala}"/>
+                        <f:setPropertyActionListener value="#{escala.escala_id}" target="#{mbEscala.escala.escala_id}"/>
+                    </h:commandButton>
+                    <h:commandButton value="Reprovar" action="#{mbEscala.reprovarEscala}">
+                        <f:setPropertyActionListener value="#{escala}" target="#{mbEscala.escala}"/>
+                        <f:setPropertyActionListener value="#{escala.escala_id}" target="#{mbEscala.escala.escala_id}"/>
+                    </h:commandButton>
+                </h:column>
+            </h:dataTable>
+        </h:form>
+    </body>
+</html>

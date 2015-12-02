@@ -37,10 +37,10 @@ public class MbPessoa implements Serializable{
         return pesssoaDAO;
     }
     public String limpaPessoa(){
-        return "/admin/usuariosCadastrados.xhtml";
+        return "/rh/usuariosCadastrados.xhtml";
     }
     public String editPessoa(){
-        return "/admin/cadastrarUsuario.xhtml";
+        return "/rh/cadastrarUsuario.xhtml";
     }
     
     public String addPessoa(){

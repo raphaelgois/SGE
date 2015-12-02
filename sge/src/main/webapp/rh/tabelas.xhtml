@@ -25,6 +25,12 @@
                     </h:column>
                     <h:column>
                         <f:facet name="header">
+                            <h:outputText value="E-mail"/>
+                        </f:facet>
+                        <h:outputText value="#{pessoa.email}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
                             <h:outputText value="Sexo"/>
                         </f:facet>
                         <h:outputText value="#{pessoa.sexo}"/>
@@ -39,15 +45,17 @@
                         <f:facet name="header">
                             <h:outputText value="Ações"/>
                         </f:facet>
-                        <h:commandLink  action="#{mbPessoa.editPessoa}">
-                            <i class="glyphicon glyphicon-edit"/>
+                        <h:commandLink  action="#{mbPessoa.editPessoa}" class="btn btn-info"
+                                        value="Editar ">
                             <f:setPropertyActionListener value="#{pessoa}" target="#{mbPessoa.pessoa}"/>
                             <f:setPropertyActionListener value="#{pessoa.idPessoa}" target="#{mbPessoa.pessoa.idPessoa}"/>
-                        </h:commandLink>>
-
-                        <h:commandButton onclick="if (!confirm('Really want to do that?'))
+                        </h:commandLink>
+                            
+                            
+                        
+                        <h:commandButton onclick="if (!confirm('Tem certeza que deseja apagar o usuário?'))
                                     return false" 
-                                         value="Deletar" action="#{mbPessoa.deletePessoa}">
+                                         value="Deletar" action="#{mbPessoa.deletePessoa}"  class="btn btn-info">
                             <f:setPropertyActionListener value="#{pessoa}" target="#{mbPessoa.pessoa}"/>
                             <f:setPropertyActionListener value="#{pessoa.idPessoa}" target="#{mbPessoa.pessoa.idPessoa}"/>
                         </h:commandButton>

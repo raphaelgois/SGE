@@ -21,19 +21,11 @@
                     <ul class="nav navbar-nav">
                         <li><a href="index.jsf">Pagina Inicial</a></li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Colaboradores <b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="cadastrarUsuario.xhtml">Cadastrar</a></li>
-                                <li><a href="usuariosCadastrados.xhtml">Usuários Cadastrados</a></li>
-                            </ul>
-                            
-                        </li>
-                        <li><a href="#">Validar Escalas</a></li>
-                        <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Escalas <b class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Validar Escalas</a></li>
-                                <li><a href="novaEscala.xhtml">Cadastrar Escalas</a></li>                
+                                <li><a href="EscalasCadastradas.xhtml">Validar Escalas</a></li>
+                                <li><a href="novaEscala.xhtml">Cadastrar Escalas</a></li>
+                                <li><a href="#">Cadastrar Tipos de Escala</a></li>
                             </ul>             
                         </li>
                     </ul>
@@ -49,7 +41,7 @@
                     <div class="row" style="padding-top: 10px;">
                         <h:form>
                             <h:commandLink value="logout"
-                                           action="#{index.logout()}"
+                                           action="#{BbUsuarioLogado.logout}"
                                            styleClass="btn btn-default btn-md navbar-right offset"
                                            role="button" style="margin-right: 5px;" />
                         </h:form>

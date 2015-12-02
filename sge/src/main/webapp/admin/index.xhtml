@@ -15,10 +15,18 @@
     </ui:define>
  
     <ui:define name="container">
-        <div class="row" style="padding-top: 60px;">
-            <h:outputText value="Oi #{BbUsuarioLogado.procuraPessoa().getNome()}"/>
-            <a style="padding-right: 3px;" href="#{request.contextPath}/j_spring_security_logout">sair</a>
-        </div>
+            <div class="panel panel-primary" style="padding-top: 60px;">
+                    <h:outputText value=""/>
+                </div>
+                <div class="panel panel-success">
+
+                    
+                
+                        <div class="panel-body">
+                        <h:outputText value="Seja bem vindo(a)! #{BbUsuarioLogado.procuraPessoa().getNome()}"/>
+                    </div>
+                    <div class="panel-footer">Panel footer</div>
+                </div>
     </ui:define>
 </ui:composition>
 

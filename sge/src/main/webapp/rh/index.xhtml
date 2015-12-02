@@ -1,26 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <html xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:ui="http://java.sun.com/jsf/facelets"
-    xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:h="http://java.sun.com/jsf/html">
- 
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
     <head>
         <title>TODO supply a title</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
     <body>
-<ui:composition template="/resources/template/main.xhtml">
-    <ui:define name="nav_bar">
-        <ui:include src="/admin/top_bar_admin.xhtml" />
-    </ui:define>
- 
-    <ui:define name="container">
-        <div class="row" style="padding-top: 60px;">
-            <h:outputText value="Oi #{BbUsuarioLogado.procuraPessoa().getNome()}"/>
-            <a style="padding-right: 3px;" href="#{request.contextPath}/j_spring_security_logout">sair</a>
-        </div>
-    </ui:define>
-</ui:composition>
+        <ui:composition template="/resources/template/main.xhtml">
+            <ui:define name="nav_bar">
+                <ui:include src="/rh/top_bar_rh.xhtml" />
+            </ui:define>
+
+            <ui:define name="container">
+
+                <div class="panel panel-primary" style="padding-top: 60px;">
+                    <h:outputText value=""/>
+                </div>
+                <div class="panel panel-success">
+
+
+
+                    <div class="panel-body">
+                        <h:outputText value="Seja bem vindo(a)! #{BbUsuarioLogado.procuraPessoa().getNome()}"/>
+                    </div>
+                    <div class="panel-footer">Panel footer</div>
+                </div>
+                <h:form>
+                    <h:dataTable id="myTable" class="table table-striped table-bordered" var="escala" value="#{mbEscala.escalas}">
+
+                        <f:facet name="header" >Lista de Escalas</f:facet>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Colaborador"/>
+                            </f:facet>
+                            <script>
+                                var p1 = "#{BbUsuarioLogado.procuraPessoa().getNome()} #{BbUsuarioLogado.procuraPessoa().getSobrenome()}";
+                                var p2 = "#{escala.escala_name}";
+                                if (p1 == p2){
+                                    alert (p2)
+                                }
+                            </script>
+                            <h:outputText value=""/>
+                         </h:column>
+                        
+                    </h:dataTable>
+                </h:form>
+
+            </ui:define>
+        </ui:composition>
 
     </body>
 </html>

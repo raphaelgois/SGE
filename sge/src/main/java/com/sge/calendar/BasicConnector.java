@@ -22,7 +22,7 @@ public class BasicConnector extends ThreadSafeConnectorServlet {
         Connection con= ( new DatabaseConnection()).getConnection();
       SchedulerConnector c = new SchedulerConnector(con);
       c.servlet(req, res);
-      c.render_table("events", "event_id", "start_date,end_date,event_name");
+      c.render_table("escala", "escala_id", "start_date,end_date,escala_name,aprovacao");
     }
 
     

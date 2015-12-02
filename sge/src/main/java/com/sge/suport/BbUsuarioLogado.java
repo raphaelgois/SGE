@@ -2,9 +2,12 @@ package com.sge.suport;
 
 import com.sge.model.entities.Pessoa;
 import com.sge.util.FacesContextUtil;
+import java.io.IOException;
 import java.io.Serializable;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import org.hibernate.Query;
 
@@ -14,22 +17,25 @@ import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 
-@ManagedBean(name="BbUsuarioLogado")
+@ManagedBean(name = "BbUsuarioLogado")
 @SessionScoped
-public class BbUsuarioLogado implements Serializable{
+public class BbUsuarioLogado implements Serializable {
+
     private static final long SerialVersionUID = 1L;
     private Pessoa usuario;
+
     public BbUsuarioLogado() {
         usuario = new Pessoa();
-        SecurityContext context = SecurityContextHolder.getContext(); 
-        if (context instanceof SecurityContext){
+        SecurityContext context = SecurityContextHolder.getContext();
+        if (context instanceof SecurityContext) {
             Authentication authentication = context.getAuthentication();
-            if (authentication instanceof Authentication){
+            if (authentication instanceof Authentication) {
                 usuario.setLogin(((User) authentication.getPrincipal()).getUsername());
             }
         }
     }
-    public Pessoa  procuraPessoa(){
+
+    public Pessoa procuraPessoa() {
         String login = getLoginUsuarioLogado();
         Session session = FacesContextUtil.getRequestSession();
         Query query = session.createQuery("from Pessoa user where user.login like ?");
@@ -38,10 +44,13 @@ public class BbUsuarioLogado implements Serializable{
     }
 
     private String getLoginUsuarioLogado() {
-       return usuario.getLogin();
+        return usuario.getLogin();
     }
-    public void logout(){
-        
+
+    public void logout() throws IOException {
+        ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+        ec.invalidateSession();
+        ec.redirect("../login.xhtml");
     }
-    
+
 }

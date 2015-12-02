@@ -24,7 +24,8 @@
         <property name="c3p0.max_statements">80</property>
         <property name="c3p0.idle_test_period">300</property>
         
-        <mapping class="com.sge.model.entities.Pessoa"/>               
+        <mapping class="com.sge.model.entities.Pessoa"/>
+        <mapping class="com.sge.model.entities.Escala"/>
     
     </session-factory>
 </hibernate-configuration>

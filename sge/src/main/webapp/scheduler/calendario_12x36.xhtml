@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <title>Calendário</title>
+        <h:outputScript library="calendario/codebase" name="dhtmlxscheduler.js"/>
+
+        <h:outputStylesheet library="calendario/codebase" name="dhtmlxscheduler.css" />
+
+    </h:head>
+    <h:body onload="init();">
+
+        <h:form id="formId"><h:inputText id="nomeusuario" value="#{BbUsuarioLogado.procuraPessoa().getNome()} #{BbUsuarioLogado.procuraPessoa().getSobrenome()}" style="display: none" /></h:form>
+        <script>
+            function init() {
+                var hiddencode = "#{BbUsuarioLogado.procuraPessoa().getNome()} #{BbUsuarioLogado.procuraPessoa().getSobrenome()}";
+                        scheduler.attachEvent("onEventCreated", function (id) {
+                            scheduler.getEvent(id).usuario = hiddencode;
+                            var section = scheduler.formSection("Nome");
+                            section.control.disabled = true;
+                        });
+                        scheduler.locale.labels.new_event = "#{BbUsuarioLogado.procuraPessoa().getNome()} #{BbUsuarioLogado.procuraPessoa().getSobrenome()}";
+                                scheduler.config.lightbox.sections = [
+                                    {name: "Nome", height: 30, map_to: "usuario", type: "textarea", focus: true},
+                                    {name: "Observações", height: 150, type: "textarea", map_to: "details"},
+                                    {name: "time", height: 72, type: "time", map_to: "auto"}
+                                ]
+
+
+                                scheduler.attachEvent("onBeforeEventChanged", function (ev, e, flag, ev_old) {
+
+
+                                    alert("You can't change the start/end date");
+
+                                    ev.start_date = ev_old.start_date;
+                                    ev.end_date = ev_old.end_date;
+
+
+                                    return true;
+                                });
+
+                                scheduler.config.xml_date = "%Y-%m-%d %H:%i";
+                                scheduler.config.drag_move = true;
+                                scheduler.config.event_duration = 720;
+
+                                scheduler.config.auto_end_date = true;
+                                scheduler.config.first_hour = 6;
+                                scheduler.locale.labels.section_location = "Location";
+                                scheduler.config.details_on_create = true;
+                                scheduler.config.details_on_dblclick = true;
+                                scheduler.init('scheduler_here', null, "month");
+
+                                scheduler.load("myconnector.do?uid=" + (new Date()).valueOf());
+                                var dp = new dataProcessor("myconnector.do");
+                                dp.init(scheduler);
+                            }
+        </script>
+
+        <div id="scheduler_here" class="dhx_cal_container" style="width:1200px; height:600px">
+
+            <div class="dhx_cal_navline">
+                <div class="dhx_cal_prev_button"></div>
+                <div class="dhx_cal_next_button"></div>
+                <div class="dhx_cal_today_button"></div>
+                <div class="dhx_cal_date"></div>
+                <div class="dhx_cal_tab" name="day_tab" style="right:150px;"></div>
+                <div class="dhx_cal_tab" name="week_tab" style="right:120px;"></div>
+                <div class="dhx_cal_tab" name="month_tab" style="right:56px;"></div>
+            </div>
+            <div class="dhx_cal_header">
+            </div>
+            <div class="dhx_cal_data">
+            </div>
+        </div>       
+    </h:body>
+</html>
